@@ -12,5 +12,12 @@
     <% } else { %>
       <a href="/auth/google">Login with Google</a>
     <% } %>
+    <div>
+      <form action="/add-grail" method="POST">
+        <input type="text" name="category" placeholder="Category" >
+        <input type="text" name="grail" placeholder="Grail">
+        <button type="submit" >Add Grail</button>
+      </form>
+    </div>
   </body>
 </html>

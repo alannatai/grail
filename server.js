@@ -15,8 +15,9 @@ const app = express();
 require('./config/database');
 require('./config/passport');
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index-router');
+const grailsRouter = require('./routes/grails-router');
+const usersRouter = require('./routes/users-router');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,7 +25,7 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
@@ -37,7 +38,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', grailsRouter);
+app.use('/', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
