@@ -10,3 +10,25 @@ body {
 a {
   text-decoration: none;
 }
+
+.main-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+
+.user-grail-content {
+  line-height: 1.25rem;
+}
+
+#ul {
+  margin-top: 0.5rem;
+}
+
+li {
+  list-style: circle;
+}
+
+.icons {
+  margin-top: 1rem;
+}

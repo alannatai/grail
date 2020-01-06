@@ -7,7 +7,8 @@ const grailSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    category: { type: Schema.Types.ObjectId, ref: 'Category' }
+    category: { type: Schema.Types.ObjectId, ref: 'Category' },
+    user: [{ type: Schema.Types.ObjectId, ref: 'User' }]
   },
   {
     timestamps: true

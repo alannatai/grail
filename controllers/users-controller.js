@@ -2,10 +2,9 @@ const Grail = require('../models/grail');
 const Category = require('../models/category');
 
 function addGrail(req, res, next) {
-  console.log('addgrail called')
-  //create grail
-  
+  console.log('req.body', req.body)
   Grail.create({grail: req.body.grail}, function(err, grail) {
+    grail.user.push(req.user);
     Category.create({category: req.body.category}, function(err, category) {
       category.grails.push(grail);
       category.save(function(err) {

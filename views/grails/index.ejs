@@ -1,23 +1,81 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <% if (user) { %>
-      <a href="/logout">Log Out</a>
-    <% } else { %>
-      <a href="/auth/google">Login with Google</a>
-    <% } %>
-    <div>
-      <form action="/add-grail" method="POST">
-        <input type="text" name="category" placeholder="Category" >
-        <input type="text" name="grail" placeholder="Grail">
-        <button type="submit" >Add Grail</button>
-      </form>
-    </div>
-  </body>
+	<head>
+		<title><%= title %></title>
+		<link rel="stylesheet" href="/stylesheets/style.css" />
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
+		/>
+		<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script defer src="/javascripts/index.js"></script>
+	</head>
+	<body>
+		<h1 class="title is-1"><%= title %></h1>
+		<% if (user) { %>
+		<p>Hello <%= user.name %></p>
+    <a href="/logout">Log Out</a>
+    <br>
+    <br>
+		<div id="add-grail-form">
+			<form action="/add-grail" method="POST">
+        <input type="text" name="category" placeholder="Category" list="categories"/>
+        <datalist id="categories">
+          <% categories.forEach(category => { %>
+             <option value="<%= category.category %>"><%= category.category %></option>
+          <% }) %>
+        </datalist>
+        <input type="text" name="grail" placeholder="Grail" list="grails" />
+        <datalist id="grails">
+         <% grails.forEach(grail => { %>
+           <option value="<%= grail.grail %>"><%= grail.grail %></option>
+         <% }) %>
+        </datalist>
+				<button type="submit">Add Grail</button>
+			</form>
+		</div>
+		<% } else { %>
+		<a href="/auth/google">Login with Google</a>
+		<% } %>
+		<div class="main-container">
+			<% userCards.forEach(userCard => { %>
+
+			<div style="width: 345px; margin: 5px;" class="box">
+				<article class="media">
+					<div class="media-left">
+						<figure class="image is-64x64">
+							<img src="<%= userCard.avatar %>" alt="Image" />
+						</figure>
+					</div>
+					<div class="media-content">
+						<div class="content">
+							<div class="user-grail-content">
+								<strong><%= userCard.category %></strong>
+								<small>@<%= userCard.user %></small>
+								<br />
+								<ul id="ul">
+									<% userCard.grails.forEach(grail => { %>
+									<li><%= grail %></li>
+									<% }) %>
+								</ul>
+							</div>
+						</div>
+						<nav class="level is-mobile, icons">
+							<div class="level-left">
+								<a class="level-item" aria-label="like">
+									<span class="icon is-small">
+										<i class="fas fa-heart" aria-hidden="true"></i>
+									</span>
+								</a>
+							</div>
+						</nav>
+					</div>
+				</article>
+			</div>
+
+			<% }) %>
+		</div>
+	</body>
 </html>
