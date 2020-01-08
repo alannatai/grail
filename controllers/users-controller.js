@@ -6,13 +6,13 @@ async function addGrail(req, res, next) {
   console.log('req.body', req.body)
   const existingCategory = await Category.findOne({ category: req.body.category }).select('_id').lean();
   const existingGrail= await Grail.findOne({ grail: req.body.grail, category: existingCategory }).select('_id').lean();
-  const existingUser= await User.findOne(req.user).select('_id').lean();
+  const existingUser= await User.findOne({ googleId: req.user.googleId, grails: existingGrail }).select('_id').lean();
 
   if (existingCategory) {
    console.log('category exists', existingCategory)
    if(existingGrail) {
      console.log('grail exists', existingGrail)
-     if(existingUser === req.user._id) {
+     if(existingUser) {
        console.log('user exists', existingUser)
        res.send('User with this grail exists')
      } else {

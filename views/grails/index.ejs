@@ -23,7 +23,7 @@
     <br>
 		<div id="add-grail-form">
 			<form action="/add-grail" method="POST" id="add-grail" >
-        <input id="poo" type="text" name="category" placeholder="Category" list="categories"/>
+        <input type="text" name="category" placeholder="Category" list="categories"/>
         <datalist id="categories">
           <% categories.forEach(category => { %>
              <option value="<%= category.category %>" id="<%= category._id %>" >
