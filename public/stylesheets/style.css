@@ -21,12 +21,12 @@ a {
   line-height: 1.25rem;
 }
 
-#ul {
-  margin-top: 0.5rem;
+li:first-of-type {
+  color: rgb(255, 29, 135);
 }
 
-li {
-  list-style: circle;
+#ol {
+  margin-top: 0.5rem;
 }
 
 .icons {

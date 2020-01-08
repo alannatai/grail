@@ -7,7 +7,7 @@ const categorySchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    grails: [{ type: Schema.Types.ObjectId, ref: 'Grail' }]
+    grails: [{ type: Schema.Types.ObjectId, ref: 'Grails' }]
   },
   {
     timestamps: true

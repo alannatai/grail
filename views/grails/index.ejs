@@ -11,6 +11,8 @@
 		/>
 		<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script defer src="/javascripts/index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
 	</head>
 	<body>
 		<h1 class="title is-1"><%= title %></h1>
@@ -20,21 +22,24 @@
     <br>
     <br>
 		<div id="add-grail-form">
-			<form action="/add-grail" method="POST">
-        <input type="text" name="category" placeholder="Category" list="categories"/>
+			<form action="/add-grail" method="POST" id="add-grail" >
+        <input id="poo" type="text" name="category" placeholder="Category" list="categories"/>
         <datalist id="categories">
           <% categories.forEach(category => { %>
-             <option value="<%= category.category %>"><%= category.category %></option>
+             <option value="<%= category.category %>" id="<%= category._id %>" >
           <% }) %>
         </datalist>
         <input type="text" name="grail" placeholder="Grail" list="grails" />
         <datalist id="grails">
          <% grails.forEach(grail => { %>
-           <option value="<%= grail.grail %>"><%= grail.grail %></option>
+           <option value="<%= grail.grail %>" id="<%= grail._id %>" >
          <% }) %>
         </datalist>
 				<button type="submit">Add Grail</button>
-			</form>
+      </form>
+      
+    <button id="test">test</button>
+
 		</div>
 		<% } else { %>
 		<a href="/auth/google">Login with Google</a>
@@ -55,11 +60,11 @@
 								<strong><%= userCard.category %></strong>
 								<small>@<%= userCard.user %></small>
 								<br />
-								<ul id="ul">
+								<ol type="I" id="ol">
 									<% userCard.grails.forEach(grail => { %>
 									<li><%= grail %></li>
 									<% }) %>
-								</ul>
+								</ol type="I">
 							</div>
 						</div>
 						<nav class="level is-mobile, icons">

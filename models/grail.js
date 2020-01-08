@@ -5,10 +5,18 @@ const grailSchema = new mongoose.Schema(
   {
     grail: {
       type: String,
-      required: true
+      required: true,
+      // validate: {
+      //   validator: function(v, cb) {
+      //     User.find({name: v}, function(err, docs){
+      //        cb(docs.length === 0);
+      //     });
+      //   },
+      //   message: 'Enter Grail'
+      // }
     },
     category: { type: Schema.Types.ObjectId, ref: 'Category' },
-    user: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+    users: [{ type: Schema.Types.ObjectId, ref: 'User' }]
   },
   {
     timestamps: true
