@@ -20,7 +20,7 @@ function index(req, res, next) {
               avatar: user.avatar,
               category: userGrail.category.category, 
               grails: [],
-              createdAt: userGrail.createdAt
+              updatedAt: userGrail.updatedAt
             }
             let cardExists = false;
             //can be replaced with find
@@ -37,8 +37,9 @@ function index(req, res, next) {
           })
         })
         userCards.sort(function(a,b){
-          return new Date(b.createdAt) - new Date(a.createdAt);
+          return new Date(b.updatedAt) - new Date(a.updatedAt);
         });
+        console.log(userCards)
         res.render('grails/index', {
           grails,
           categories,

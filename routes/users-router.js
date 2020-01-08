@@ -10,4 +10,6 @@ function isLoggedIn(req, res, next) {
 
 router.post('/add-grail', isLoggedIn, usersController.addGrail);
 
+router.get('/grails/:id', usersController.show);
+
 module.exports = router;

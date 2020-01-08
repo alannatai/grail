@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= title %></title>
+		<link rel="stylesheet" href="/stylesheets/style.css" />
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
+		/>
+		<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script defer src="/javascripts/index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+	</head>
+	<body>
+		<a href="/" class="title is-1"><%= title %></a>
+		<% if (user) { %>
+    <p>Hello <%= user.name %></p>
+    <a href="/grails/<%= user._id %>">My Grails</a>
+    <a href="/logout">Log Out</a>
+		</div>
+		<% } else { %>
+		<a href="/auth/google">Login with Google</a>
+    <% } %>
