@@ -8,35 +8,44 @@
 		<link
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
-		/>
+    />
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa|Montserrat|Pacifico|Sacramento&display=swap" rel="stylesheet">
 		<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script defer src="/javascripts/index.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
 	</head>
 	<body>
-    <nav>
-      <div id="title">
-        <a href="/" class="title is-1"><%= title %></a>
+  <section class="hero is-primary">
+      <div class="hero-head">
+        <nav class="navbar">
+          <div class="container">
+            <div class="navbar-brand">
+              <div id="title" class="level-left">
+                  <a href="/" class="title is-1">Grail</a>
+              </div>
+            </div>
+            <div id="navbarMenuHeroA" class="navbar-menu">
+              <div class="navbar-end">
+                <a href="/" <%- title === 'Grail' ? 'class="navbar-item is-active"' : 'class="navbar-item"' %>>
+                  Home
+                </a>
+                <% if (user) { %>
+                <a href="/user/<%= user._id %>" <%- title === 'My Grails' ? 'class="navbar-item is-active"' : 'class="navbar-item"' %>>
+                  My Grails
+                </a>
+                <a class="navbar-item" href="/logout">
+                  Log Out
+                </a>
+                <% } else { %>
+                  <a class="navbar-item" href="/auth/google">
+                    Log in with Google
+                  </a>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </nav>
       </div>
-
-    <ul>
-      <li>
-          <a href="/">Home</a>
-      </li>
-		<% if (user) { %>
-      <li>
-        <a href="/user/<%= user._id %>">My Grails</a>
-      </li>
-      <li>
-        <a href="/logout">Log Out</a>
-      </li>
-    
-    <% } else { %>
-      <li>
-        <a href="/auth/google">Login with Google</a>
-      </li>
-    <% } %>
-    </ul>
-  </nav>
+    </section>
   

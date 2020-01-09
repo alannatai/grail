@@ -6,6 +6,10 @@ body {
   box-sizing: border-box;
 }
 
+#title {
+  font-family: 'Sacramento', 'Comfortaa', 'Montserrat', 'Pacifico' , cursive; 
+}
+
 nav {
   display: flex;
   width: 100%;
@@ -76,7 +80,7 @@ label {
 
 .formwrap {
   padding: 20px;
-  background-color: white;
+  background-color: #ebfffc;
   max-width: 620px;
   height: 100%;
   float: right;

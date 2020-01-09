@@ -40,7 +40,7 @@ function show(req, res, next) {
         res.render('grails/show', {
           grails,
           categories,
-          title: 'Grail',
+          title: 'My Grails',
           user: req.user,
           userCards    
         })
