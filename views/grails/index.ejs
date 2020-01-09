@@ -1,5 +1,22 @@
 <%- include('../partials/header') %>
 
+<form action="/grails" method="GET">
+  <div>
+    <div class="input-field">
+      <input id="search" type="search" name="category" placeholder="Search Category" value="<%= userCards.category %>" autocomplete="off">
+    </div>
+  </div>
+  <!-- <div>
+    <p>
+      <label for="sort-category">
+        <input name="sort" type="radio" id="sort-category" value="category" 
+          <%= sortKey === 'name' ? 'checked' : '' %> >
+        <span>Sort by Category</span>
+      </label>
+    </p>
+  </div> -->
+</form>
+
 <% if (user) { %>
   <p>Hello <%= user.name %></p>
   <a href="#" class="button is-primary is-light cta-open">Add Grail</a>

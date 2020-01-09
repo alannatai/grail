@@ -3,6 +3,7 @@ const Grail = require('../models/grail');
 const Category = require('../models/category');
 
 function index(req, res, next) {
+  console.log('req.query.category', req.query.category)
   Category.find({}, function(err, categories) {
     Grail.find({}, function(err, grails) {
       User.find({})
@@ -11,6 +12,7 @@ function index(req, res, next) {
         populate: { path: 'category' }
       })
       .exec(function(err, users) {
+        let sortKey = req.query.category;
         let userCards = [];
         users.forEach(user => {
           user.grails.forEach(userGrail => {
@@ -35,9 +37,15 @@ function index(req, res, next) {
             }
           })
         })
-        userCards.sort(function(a,b){
-          return new Date(b.updatedAt) - new Date(a.updatedAt);
-        });
+        if(sortKey) {
+          const result = userCards.filter(userCard => userCard.category == sortKey)
+          userCards = result;
+        } else {
+          userCards.sort(function(a,b){
+            return new Date(b.updatedAt) - new Date(a.updatedAt);
+          });
+        }
+        
         console.log(userCards)
         res.render('grails/index', {
           grails,
@@ -45,7 +53,8 @@ function index(req, res, next) {
           title: 'Grail',
           user: req.user,
           users,
-          userCards
+          userCards,
+          sortKey
         })
       })
     })
