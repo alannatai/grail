@@ -16,31 +16,26 @@ $(document).ready(function() {
     $(`#${e.target.id}.user-grail-delete`).css('display', 'none');
     $(`#${e.target.id}.user-grail-form`).css('display', 'block');
   });
+})
 
-  $('#user-grail-update').on('submit', function(e) {
-    e.preventDefault();
-    const inputGrail = $('#user-grail-update input').val();
-    const inputCategory = $('#user-grail-update input').attr('category');
-    console.log(inputGrail)
-    console.log(inputCategory)
+function userGrailUpdate(deleteGrailId, updateCategory) {
+  // e.preventDefault();
+  const updateGrail = $(`#${deleteGrailId}-input`).val();
+  console.log(updateCategory)
+  console.log(updateGrail)
 
-    // $.ajax({
-    //   "async": true,
-    //   "url": `http://localhost:9000/add-grail`,
-    //   "method": "POST",
-    //   "data": {         
-    //     "category": inputCategory,
-    //     "grail": inputGrail
-    //   }
-    // })
-    //   .done(function (response) {
-    //     console.log(response);
-    //  });
-  
-
-
-  const deleteGrailId = $('.user-grail-delete').attr('id');
-  console.log(deleteGrailId)
+  $.ajax({
+    "async": true,
+    "url": `http://localhost:9000/api/add-grail`,
+    "method": "POST",
+    "data": {         
+      "category": updateCategory,
+      "grail": updateGrail
+    }
+  })
+    .done(function (response) {
+      console.log(response);
+   });
 
   $.ajax({
     "async": true,
@@ -49,10 +44,10 @@ $(document).ready(function() {
   })
     .done(function (response) {
       console.log(response);
-   })
-
   })
-})
+   return false;
+
+  }
   
   // $('#edit-button').on('click', function(e) {
   //   e.preventDefault();

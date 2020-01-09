@@ -49,7 +49,7 @@ function show(req, res, next) {
   })
 }
 
-async function addGrail(req, res, next) {
+async function _addGrail(req, res, onSuccessCb) {
   console.log('req.body', req.body)
   const existingCategory = await Category.findOne({ category: req.body.category }).select('_id').lean();
   const existingGrail= await Grail.findOne({ grail: req.body.grail, category: existingCategory }).select('_id').lean();
@@ -65,7 +65,9 @@ async function addGrail(req, res, next) {
          grail.save(function(err) {
            req.user.grails.push(grail);
            req.user.save(function(err) {
-             res.redirect('/grails');
+            if (!err) {
+              onSuccessCb();
+            }
            })
          })
        })
@@ -78,7 +80,9 @@ async function addGrail(req, res, next) {
          req.user.grails.push(grail);
          grail.save(function(err) {
           req.user.save(function(err){
-            res.redirect('/grails');
+            if (!err) {
+              onSuccessCb();
+            }
           })
          })
        })
@@ -92,12 +96,23 @@ async function addGrail(req, res, next) {
         grail.save(function(err) {
           req.user.grails.push(grail);
           req.user.save(function(err) {
-            res.redirect('/grails');
+            if (!err) {
+              onSuccessCb();
+            }
           })
         })
       })
     })
   }
+}
+
+function addGrail(req, res) {
+  _addGrail(req, res, () => res.redirect(`/grails`));
+};
+
+function addGrailApi(req, res) {
+  console.log('res');
+  _addGrail(req, res, () => res.send('Success'));
 }
 
 function _deleteGrail(req, res, onSuccessCb) {
@@ -107,7 +122,7 @@ function _deleteGrail(req, res, onSuccessCb) {
     req.user.save(function(err) {
       grail.save(function(err) {
         if (!err) {
-          onSuccessCb()
+          onSuccessCb();
         }
       })
     })
@@ -119,6 +134,7 @@ function deleteGrail(req, res) {
 };
 
 function deleteGrailApi(req, res) {
+  console.log('res');
   _deleteGrail(req, res, () => res.send('Success'));
 }
 
@@ -137,6 +153,7 @@ function deleteGrailPost(req, res) {
 
 module.exports = {
   addGrail,
+  addGrailApi,
   show,
   deleteGrail,
   deleteGrailApi, 

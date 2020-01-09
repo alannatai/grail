@@ -9,6 +9,7 @@ function isLoggedIn(req, res, next) {
 };
 
 router.post('/add-grail', isLoggedIn, usersController.addGrail);
+router.post('/api/add-grail', isLoggedIn, usersController.addGrailApi);
 
 router.get('/user/:id', usersController.show);
 

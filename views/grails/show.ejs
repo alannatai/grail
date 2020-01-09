@@ -24,15 +24,15 @@
                   <li>
                     <span id="<%= grail._id %>" class="user-grail-text"><%= grail.grail %></span>
                     <span id="<%= grail._id %>" class="user-grail-form" style="display:none">
-                    <form id="user-grail-update">
+                    <form id="user-grail-update" action="" onsubmit="return false;">
                       <div class="field is-grouped">
-                      <input class="input is-small" type="text" name="grail" placeholder="Grail" list="grails" category="<%= userCard.category %>" required/>
+                      <input id="<%= grail._id %>-input" class="input is-small" type="text" name="grail" placeholder="Grail" list="grails" category="<%= userCard.category %>" required/>
                       <datalist id="grails">
                         <% grails.forEach(grail => { %>
                           <option value="<%= grail.grail %>" id="<%= grail._id %>" >
                         <% }) %>
                       </datalist>
-                      <button style="display:inline-block" type="submit">Save</button>
+                      <button style="display:inline-block" onclick="userGrailUpdate('<%= grail._id %>','<%= userCard.category %>');" type="submit">Save</button>
                     </div>
                     </form>
                   </span>
