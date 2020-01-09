@@ -92,3 +92,20 @@ option {
     width: 100%
   }
 }
+
+#user-grails-main-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user-grail-form input{
+  
+}
+
+.user-grail-buttons {
+  display: inline-block;
+}
+
+.delete-button {
+  float: right;
+}

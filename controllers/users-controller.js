@@ -100,17 +100,27 @@ async function addGrail(req, res, next) {
   }
 }
 
-function deleteGrail(req, res) {
+function _deleteGrail(req, res, onSuccessCb) {
   Grail.findById(req.params.id, function(err, grail) {
     req.user.grails.splice(req.user.grails.indexOf(req.params.id), 1);
     grail.users.splice(grail.users.indexOf(req.user._id), 1);
     req.user.save(function(err) {
       grail.save(function(err) {
-        res.redirect(`/user/${req.user._id}`);
+        if (!err) {
+          onSuccessCb()
+        }
       })
     })
   });
+}
+
+function deleteGrail(req, res) {
+  _deleteGrail(req, res, () => res.redirect(`/user/${req.user._id}`));
 };
+
+function deleteGrailApi(req, res) {
+  _deleteGrail(req, res, () => res.send('Success'));
+}
 
 function deleteGrailPost(req, res) {
   Grail.find({ category: req.params.id }, function(err, grails) {
@@ -128,6 +138,7 @@ function deleteGrailPost(req, res) {
 module.exports = {
   addGrail,
   show,
-  deleteGrail, 
+  deleteGrail,
+  deleteGrailApi, 
   deleteGrailPost
 };

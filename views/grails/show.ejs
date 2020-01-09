@@ -1,13 +1,15 @@
 <%- include('../partials/header') %>
 
+<% if(user) { %>
+
   <h1> <%= user.name %>'s Grails</h1> 
   <figure class="image is-64x64">
       <img src="<%= user.avatar %>" alt="Image" />
   </figure>
-  <div class="main-container">
+  <div id="user-grails-main-container">
       <% userCards.forEach(userCard => { %>
         
-			<div id="grail-card" style="width: 100%; margin: 5px;" class="box">
+			<div id="grail-card" style="width: 48%; margin: 5px;" class="box">
 				<article class="media">
 					<div class="media-left">
 					</div>
@@ -19,16 +21,34 @@
 								<br />
 								<ol type="I" id="ol">
 									<% userCard.grails.forEach(grail => { %>
-                  <li><%= grail.grail %> <%= grail._id %>
-                    <form style="display: inline-block" action="/user/grail/<%= grail._id %>/?_method=DELETE" method="POST">
-                      <button type="submit">X</button>
+                  <li>
+                    <span id="<%= grail._id %>" class="user-grail-text"><%= grail.grail %></span>
+                    <span id="<%= grail._id %>" class="user-grail-form" style="display:none">
+                    <form id="user-grail-update">
+                      <div class="field is-grouped">
+                      <input class="input is-small" type="text" name="grail" placeholder="Grail" list="grails" category="<%= userCard.category %>" required/>
+                      <datalist id="grails">
+                        <% grails.forEach(grail => { %>
+                          <option value="<%= grail.grail %>" id="<%= grail._id %>" >
+                        <% }) %>
+                      </datalist>
+                      <button style="display:inline-block" type="submit">Save</button>
+                    </div>
                     </form>
+                  </span>
+                    <button id="<%= grail._id %>" class="pencil">Edit</button>
+
+                    <span id="<%= grail._id %>" class="user-grail-delete">
+                      <form class="user-grail-buttons" action="/user/grail/<%= grail._id %>/?_method=DELETE" method="POST">
+                        <button type="submit"><i class="fas fa-times"></i></button>
+                      </form>
+                    </span>
                   </li>
 									<% }) %>
                 </ol>
                 
                 <form action="/user/grails/<%= userCard.categoryId %>/?_method=DELETE" method="POST">
-                  <button class="button is-danger" type="submit">Delete</button>
+                  <button class="delete-button button is-danger" type="submit">Delete</button>
                 </form>
 
 							</div>
@@ -48,5 +68,9 @@
     
 			<% }) %>
     </div>
+
+    <% } else { %>
+      <% window.location.href='/grails/' %>
+    <% } %>
 
     <%- include('../partials/footer') %>

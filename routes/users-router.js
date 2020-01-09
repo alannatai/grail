@@ -15,5 +15,6 @@ router.get('/user/:id', usersController.show);
 router.delete('/user/grails/:id', usersController.deleteGrailPost);
 
 router.delete('/user/grail/:id', usersController.deleteGrail);
+router.delete('/api/user/grail/:id', usersController.deleteGrailApi);
 
 module.exports = router;
