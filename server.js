@@ -7,6 +7,7 @@ const session = require('express-session');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
+const methodOverride = require('method-override');
 
 require('dotenv').config();
 
@@ -36,6 +37,7 @@ app.use(session({
 }))
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(methodOverride('_method'));
 
 app.use('/', indexRouter);
 app.use('/', grailsRouter);

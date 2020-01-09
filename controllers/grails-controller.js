@@ -3,7 +3,6 @@ const Grail = require('../models/grail');
 const Category = require('../models/category');
 
 function index(req, res, next) {
-  console.log('index called')
   Category.find({}, function(err, categories) {
     Grail.find({}, function(err, grails) {
       User.find({})

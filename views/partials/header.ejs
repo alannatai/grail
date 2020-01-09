@@ -15,12 +15,19 @@
 
 	</head>
 	<body>
-		<a href="/" class="title is-1"><%= title %></a>
+    <nav>
+      <div id="title">
+        <a href="/" class="title is-1"><%= title %></a>
+      </div>
+
 		<% if (user) { %>
-    <p>Hello <%= user.name %></p>
-    <a href="/grails/<%= user._id %>">My Grails</a>
-    <a href="/logout">Log Out</a>
-		</div>
+      <div>
+        <a href="/user/<%= user._id %>">My Grails</a>
+        <a href="/logout">Log Out</a>
+      </div>
+    
 		<% } else { %>
 		<a href="/auth/google">Login with Google</a>
     <% } %>
+  </nav>
+  

@@ -1,25 +1,38 @@
 <%- include('../partials/header') %>
 
-
 <% if (user) { %>
-<div id="add-grail-form">
-  <form action="/add-grail" method="POST" id="add-grail" >
-    <input type="text" name="category" placeholder="Category" list="categories"/>
-    <datalist id="categories">
-      <% categories.forEach(category => { %>
-          <option value="<%= category.category %>" id="<%= category._id %>" >
-      <% }) %>
-    </datalist>
-    <input type="text" name="grail" placeholder="Grail" list="grails" />
-    <datalist id="grails">
-      <% grails.forEach(grail => { %>
-        <option value="<%= grail.grail %>" id="<%= grail._id %>" >
-      <% }) %>
-    </datalist>
-    <button type="submit">Add Grail</button>
-  </form>
+  <p>Hello <%= user.name %></p>
+  <a href="#" class="button is-primary is-light cta-open">Add Grail</a>
 
-</div>
+  <section class="toggle-form">
+    <div class="formwrap px-4">
+      <span class="icon-close icon has-text-danger"><i class="fas fa-times fa-2x"></i></span>
+      <form action="/add-grail" method="POST" role="form" data-toggle="validator">
+        <div>
+          <label>Category</label>
+          <input class="input" type="text" name="category" placeholder="Category" list="categories" data-error="Please enter a category" required/>
+            <datalist id="categories">
+              <% categories.forEach(category => { %>
+                  <option value="<%= category.category %>" id="<%= category._id %>" >
+              <% }) %>
+            </datalist>
+        </div>
+        <br>
+        <div>
+          <label>Grails</label>
+          <input class="input" type="text" name="grail" placeholder="Grail" list="grails" data-error="Please enter a category" required/>
+            <datalist id="grails">
+              <% grails.forEach(grail => { %>
+                <option value="<%= grail.grail %>" id="<%= grail._id %>" >
+              <% }) %>
+            </datalist>
+        </div>
+        <br>
+        <button type="submit" class="button is-primary is-light">Submit</button>
+      </form>    
+    </div>
+  </section>
+
 <% } %>
 
 <div class="main-container">

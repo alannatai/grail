@@ -1,3 +1,20 @@
+$(document).ready(function() {
+	$('.cta-open').on('click', function() {
+		$('.toggle-form, .formwrap').addClass('active');
+		$('.icon-close').addClass('open');
+	});
+	$('.icon-close').on('click', function() {
+		$('.toggle-form, .formwrap').removeClass('active');
+		$('.icon-close').removeClass('open');
+  });
+  
+  // $('#edit-button').on('click', function(e) {
+  //   e.preventDefault();
+  //   console.log(e.target)
+  // })
+
+});
+
 // $('#grail-card').on('click', function() {
 //   window.location.href='/grails/show';
 // })
@@ -16,14 +33,6 @@
 //   console.log(response);
 // });
 
-
-
-
-
-
-
-
-
 // const axios = require('axios');
 
 // changeHandler = e => {
@@ -37,4 +46,3 @@
 //     console.log(res.data);
 //   })
 // });
-

@@ -16,7 +16,8 @@ function show(req, res, next) {
             let newUserCard = { 
               user: user.name, 
               avatar: user.avatar,
-              category: userGrail.category.category, 
+              category: userGrail.category.category,
+              categoryId: userGrail.category._id, 
               grails: [],
               updatedAt: userGrail.updatedAt
             }
@@ -24,19 +25,18 @@ function show(req, res, next) {
             //can be replaced with find
             userCards.forEach(userCard => {
               if(userGrail.category.category === userCard.category && user.name === userCard.user) {
-                userCard.grails.push(userGrail.grail);
+                userCard.grails.push({ grail: userGrail.grail, _id: userGrail._id });
                 cardExists = true;
               }
             })
             if(!cardExists ) {
-                newUserCard.grails.push(userGrail.grail)
+                newUserCard.grails.push({ grail: userGrail.grail, _id: userGrail._id })
                 userCards.push(newUserCard);
             }
         })
         userCards.sort(function(a,b){
           return new Date(b.updatedAt) - new Date(a.updatedAt);
         });
-        console.log(userCards)
         res.render('grails/show', {
           grails,
           categories,
@@ -100,7 +100,34 @@ async function addGrail(req, res, next) {
   }
 }
 
+function deleteGrail(req, res) {
+  Grail.findById(req.params.id, function(err, grail) {
+    req.user.grails.splice(req.user.grails.indexOf(req.params.id), 1);
+    grail.users.splice(grail.users.indexOf(req.user._id), 1);
+    req.user.save(function(err) {
+      grail.save(function(err) {
+        res.redirect(`/user/${req.user._id}`);
+      })
+    })
+  });
+};
+
+function deleteGrailPost(req, res) {
+  Grail.find({ category: req.params.id }, function(err, grails) {
+    grails.forEach(grail => {
+      req.user.grails.splice(req.user.grails.indexOf(grail._id), 1);
+      grail.users.splice(grail.users.indexOf(req.user._id), 1);
+    })
+    req.user.save(function(err) {
+      const promises = grails.map((grail) => grail.save());
+      Promise.all(promises).then(() => res.redirect(`/user/${req.user._id}`));
+    })  
+  });
+};
+
 module.exports = {
   addGrail,
-  show
+  show,
+  deleteGrail, 
+  deleteGrailPost
 };

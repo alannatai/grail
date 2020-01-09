@@ -5,8 +5,8 @@
       <img src="<%= user.avatar %>" alt="Image" />
   </figure>
   <div class="main-container">
-			<% userCards.forEach(userCard => { %>
-
+      <% userCards.forEach(userCard => { %>
+        
 			<div id="grail-card" style="width: 100%; margin: 5px;" class="box">
 				<article class="media">
 					<div class="media-left">
@@ -19,9 +19,18 @@
 								<br />
 								<ol type="I" id="ol">
 									<% userCard.grails.forEach(grail => { %>
-									<li><%= grail %></li>
+                  <li><%= grail.grail %> <%= grail._id %>
+                    <form style="display: inline-block" action="/user/grail/<%= grail._id %>/?_method=DELETE" method="POST">
+                      <button type="submit">X</button>
+                    </form>
+                  </li>
 									<% }) %>
-								</ol type="I">
+                </ol>
+                
+                <form action="/user/grails/<%= userCard.categoryId %>/?_method=DELETE" method="POST">
+                  <button class="button is-danger" type="submit">Delete</button>
+                </form>
+
 							</div>
 						</div>
 						<nav class="level is-mobile, icons">
@@ -35,7 +44,8 @@
 						</nav>
 					</div>
 				</article>
-			</div>
+      </div>
+    
 			<% }) %>
     </div>
 
