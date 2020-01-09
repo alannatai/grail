@@ -11,6 +11,7 @@ function isLoggedIn(req, res, next) {
 router.post('/add-grail', isLoggedIn, usersController.addGrail);
 router.post('/api/add-grail', isLoggedIn, usersController.addGrailApi);
 
+router.put('/user/profile/:id', usersController.updateProfile);
 router.get('/user/:id', usersController.show);
 
 router.delete('/user/grails/:id', usersController.deleteGrailPost);

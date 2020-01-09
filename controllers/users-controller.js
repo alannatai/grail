@@ -151,11 +151,22 @@ function deleteGrailPost(req, res) {
   });
 };
 
+function updateProfile(req, res) {
+  User.findByIdAndUpdate(req.params.id, req.body, { new: true })
+  .then(user => {
+    res.redirect(`/user/${req.user._id}`);
+  })
+  .catch(err => {
+    res.status(500).json(err);
+  })
+}
+
 module.exports = {
   addGrail,
   addGrailApi,
   show,
   deleteGrail,
   deleteGrailApi, 
-  deleteGrailPost
+  deleteGrailPost,
+  updateProfile
 };

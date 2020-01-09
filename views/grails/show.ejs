@@ -6,6 +6,29 @@
   <figure class="image is-64x64">
       <img src="<%= user.avatar %>" alt="Image" />
   </figure>
+
+  <form action="/user/profile/<%= user._id %>/?_method=PUT" method="POST">
+  <div class="field">
+      <p class="control">
+        <label class="label is-small">Edit Username</label>
+        <input class="input is-small" type="text" name="name" value="<%= user.name %>" placeholder="Edit Username">
+      </p>
+    </div>
+    <div class="field">
+      <p class="control">
+        <label class="label is-small">Edit Avatar Url</label>
+        <input class="input is-small" type="text" name="avatar" value="<%= user.avatar %>"" placeholder="Edit Avatar Url" />
+      </p>
+    </div>
+    <div class="field">
+      <p class="control">
+        <button class="button is-success">
+          Save
+        </button>
+      </p>
+    </div>
+  </form>
+  
   <div id="user-grails-main-container">
       <% userCards.forEach(userCard => { %>
         

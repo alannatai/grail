@@ -45,7 +45,7 @@ function index(req, res, next) {
           title: 'Grail',
           user: req.user,
           users,
-          userCards    
+          userCards
         })
       })
     })
