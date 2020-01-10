@@ -43,8 +43,10 @@
 <div id="tally-container">
     <% if(grailTally) { %>
       <% grailTally.forEach(grail => { %>
+        <div class="tally-grail">
         <label class="grail-tally-label"><%= grail.grail %> <span style="font-weight:bolder">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= grail.value %>%</span></label>
         <progress class="progress_bar" value="<%= grail.value %>" max="100"></progress>
+        </div>
       <% }) %>
     <% } %>
 </div>
