@@ -42,7 +42,7 @@ function userGrailUpdate(deleteGrailId, updateCategory) {
 
   $.ajax({
     "async": true,
-    "url": `http://localhost:9000/api/add-grail`,
+    "url": `https://grail-sei.herokuapp.com/api/add-grail`,
     "method": "POST",
     "data": {         
       "category": updateCategory,
@@ -55,7 +55,7 @@ function userGrailUpdate(deleteGrailId, updateCategory) {
 
   $.ajax({
     "async": true,
-    "url": `http://localhost:9000/api/user/grail/${deleteGrailId}/`,
+    "url": `https://grail-sei.herokuapp.com/api/user/grail/${deleteGrailId}/`,
     "method": "DELETE"
   })
     .done(function (response) {
@@ -63,5 +63,4 @@ function userGrailUpdate(deleteGrailId, updateCategory) {
       window.location.reload();
   })
    return false;
-
   }
