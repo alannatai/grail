@@ -25,9 +25,79 @@ a {
   text-decoration: none;
 }
 
+#add-grail-button-container {
+  position: fixed;
+  bottom: 2%;
+  right: 49%;
+  background-color: white;
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
+}
+
+#add-grail-button {
+  position: fixed;
+  bottom: 2%;
+  right: 49%;
+  color: #00d1b1;
+}
+
+#add-grail-button:hover {
+  color: #df6f6f;
+}
+
+#tally-container {
+  margin: 40px;
+  width: 30%;
+}
+
+.grail-tally-label {
+  font-size: 10px;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+progress {
+  -webkit-appearance: none;
+   appearance: none;
+
+  width: 500px;
+  height: 10px;
+}
+
+progress::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 5px;
+}
+
+progress::-webkit-progress-value {
+  background-image:
+	   -webkit-linear-gradient(top, 
+	                           rgba(255, 255, 255, .25), 
+	                           rgba(0, 0, 0, .25)),
+	   -webkit-linear-gradient(left, #09c, #f44);
+
+    border-radius: 5px; 
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+}
+
 .main-container {
+  margin: 20px auto 0 auto;
+  width: 99%;
   display: flex;
   flex-wrap: wrap;
+}
+
+#grail-card {
+  width: 23%; 
+  min-width: 300px;
   margin: 10px;
 }
 
@@ -39,8 +109,9 @@ li:first-of-type {
   color: rgb(255, 29, 135);
 }
 
-#ol {
-  margin-top: 0.5rem;
+#ul {
+  margin: 0.5rem 0 1rem 0.5rem;
+  list-style: none;
 }
 
 .icons {
@@ -80,11 +151,20 @@ label {
 
 .formwrap {
   padding: 20px;
-  background-color: #ebfffc;
+  background-color: #f4fffd;
   max-width: 620px;
   height: 100%;
   float: right;
   box-shadow: -1px 0px 12px rgba(0, 0, 0, 0.1);
+  z-index: 99;
+}
+
+#form-screen {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background: rgb(255,255,255);
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(153,170,167,0.4) 38%, rgba(0,42,34,1) 100%);
 }
 
 option {

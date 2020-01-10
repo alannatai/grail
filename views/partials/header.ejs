@@ -32,7 +32,7 @@
                 </a>
                 <% if (user) { %>
                 <a href="/user/<%= user._id %>" <%- title === 'My Grails' ? 'class="navbar-item is-active"' : 'class="navbar-item"' %>>
-                  My Grails
+                  <%= user.name %>'s Grails
                 </a>
                 <a class="navbar-item" href="/logout">
                   Log Out

@@ -14,8 +14,7 @@ function show(req, res, next) {
         let userCards = [];
           user.grails.forEach(userGrail => {
             let newUserCard = { 
-              user: user.name, 
-              avatar: user.avatar,
+              user: user.name,
               category: userGrail.category.category,
               categoryId: userGrail.category._id, 
               grails: [],

@@ -3,17 +3,23 @@ const Grail = require('../models/grail');
 const Category = require('../models/category');
 
 function index(req, res, next) {
-  console.log('req.query.category', req.query.category)
+  console.log('req.query:', req.query)
   Category.find({}, function(err, categories) {
-    Grail.find({}, function(err, grails) {
+    Grail.find({})
+    .populate('category')
+    .exec(function(err, grails) {
       User.find({})
       .populate({ 
         path: 'grails', 
         populate: { path: 'category' }
       })
       .exec(function(err, users) {
-        let sortKey = req.query.category;
+        let sortCategoryKey = req.query.category;
+        let sortUserKey = req.query.user;
         let userCards = [];
+        let grailTally = [];
+        let tallyTotal = 0;
+
         users.forEach(user => {
           user.grails.forEach(userGrail => {
             let newUserCard = { 
@@ -24,7 +30,6 @@ function index(req, res, next) {
               updatedAt: userGrail.updatedAt
             }
             let cardExists = false;
-            //can be replaced with find
             userCards.forEach(userCard => {
               if(userGrail.category.category === userCard.category && user.name === userCard.user) {
                 userCard.grails.push(userGrail.grail);
@@ -37,8 +42,27 @@ function index(req, res, next) {
             }
           })
         })
-        if(sortKey) {
-          const result = userCards.filter(userCard => userCard.category == sortKey)
+
+        if(sortCategoryKey) {
+          const result = userCards.filter(userCard => userCard.category === sortCategoryKey)
+          userCards = result;
+
+          grails.forEach(grail => {
+            if(grail.category.category === sortCategoryKey && grail.users.length > 0) {
+              let grailCount = {
+                grail: grail.grail,
+                value: grail.users.length
+              }
+              tallyTotal = tallyTotal + grail.users.length
+              grailTally.push(grailCount)
+            }
+          })
+          grailTally.forEach(grail => {
+            grail.value = Math.floor((grail.value * 100 / tallyTotal) * 100) / 100 
+          })
+          grailTally.sort((a, b) => b.value - a.value);
+        } else if(sortUserKey) {
+          const result = userCards.filter(userCard => userCard.user === sortUserKey)
           userCards = result;
         } else {
           userCards.sort(function(a,b){
@@ -46,7 +70,6 @@ function index(req, res, next) {
           });
         }
         
-        console.log(userCards)
         res.render('grails/index', {
           grails,
           categories,
@@ -54,13 +77,42 @@ function index(req, res, next) {
           user: req.user,
           users,
           userCards,
-          sortKey
+          sortCategoryKey,
+          grailTally
         })
       })
     })
   })
 }
 
+function getGrailTally(req, res, next) {
+  Grail.find({})
+  .populate('category')
+  .exec(function(err, grails){
+    let sortCategoryKey = req.query.category;
+    let grailTally;
+    let tallyTotal = 0;
+
+    grails.forEach(grail => {
+      if(grail.category.category === sortCategoryKey ) {
+        let grailCount = {
+          grail: grail.grail,
+          value: grail.users.length
+        }
+        tallyTotal = tallyTotal + grail.users.length
+        grailTally.push(grailCount)
+      }
+    })
+    grailTally.forEach(grail => {
+      grail.value = Math.floor((grail.value * 100 / tallyTotal) * 100) / 100 
+    })
+    res.render('grails/index', {
+      grailTally
+    })
+  })
+}
+
 module.exports = {
-  index
+  index,
+  getGrailTally
 };

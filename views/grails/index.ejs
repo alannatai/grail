@@ -1,61 +1,40 @@
 <%- include('../partials/header') %>
 
 <form action="/grails" method="GET">
-  <div>
-    <div class="input-field">
-      <input id="search" type="search" name="category" placeholder="Search Category" value="<%= userCards.category %>" autocomplete="off">
-    </div>
+  <div class="input-field">
+      <input class="input" type="text" name="category" placeholder="Filter by Category" list="categories" data-error="Please enter a category"/>
+      <datalist id="categories">
+        <% categories.forEach(category => { %>
+            <option value="<%= category.category %>" id="<%= category._id %>" >
+        <% }) %>
+      </datalist>
   </div>
-  <!-- <div>
-    <p>
-      <label for="sort-category">
-        <input name="sort" type="radio" id="sort-category" value="category" 
-          <%= sortKey === 'name' ? 'checked' : '' %> >
-        <span>Sort by Category</span>
-      </label>
-    </p>
-  </div> -->
+</form>
+<form action="/grails" method="GET">
+  <div class="input-field">
+      <input class="input" type="text" name="user" placeholder="Filter by User" list="users" data-error="Please enter a category"/>
+      <datalist id="users">
+        <% users.forEach(user => { %>
+            <option value="<%= user.name %>" id="<%= user._id %>" >
+        <% }) %>
+      </datalist>
+  </div>
 </form>
 
-<% if (user) { %>
-  <p>Hello <%= user.name %></p>
-  <a href="#" class="button is-primary is-light cta-open">Add Grail</a>
+<div id="tally-container">
+    <% if(grailTally) { %>
+      <% grailTally.forEach(grail => { %>
+        <label class="grail-tally-label"><%= grail.grail %></label>
+        <progress class="" value="<%= grail.value %>" max="100"></progress>
+      <% }) %>
+    <% } %>
+</div>
 
-  <section class="toggle-form">
-    <div class="formwrap px-4">
-      <span class="icon-close icon has-text-danger"><i class="fas fa-times fa-2x"></i></span>
-      <form action="/add-grail" method="POST" role="form" data-toggle="validator">
-        <div>
-          <label>Category</label>
-          <input class="input" type="text" name="category" placeholder="Category" list="categories" data-error="Please enter a category" required/>
-            <datalist id="categories">
-              <% categories.forEach(category => { %>
-                  <option value="<%= category.category %>" id="<%= category._id %>" >
-              <% }) %>
-            </datalist>
-        </div>
-        <br>
-        <div>
-          <label>Grails</label>
-          <input class="input" type="text" name="grail" placeholder="Grail" list="grails" data-error="Please enter a category" required/>
-            <datalist id="grails">
-              <% grails.forEach(grail => { %>
-                <option value="<%= grail.grail %>" id="<%= grail._id %>" >
-              <% }) %>
-            </datalist>
-        </div>
-        <br>
-        <button type="submit" class="button is-primary">Submit</button>
-      </form>    
-    </div>
-  </section>
-
-<% } %>
-
+<div class="main-container-center">
 <div class="main-container">
   <% userCards.forEach(userCard => { %>
 
-  <div id="grail-card" style="width: 345px; margin: 5px;" class="box">
+  <div id="grail-card" class="box">
     <article class="media">
       <div class="media-left">
         <figure class="image is-64x64">
@@ -68,26 +47,18 @@
             <strong><%= userCard.category %></strong>
             <small>@<%= userCard.user %></small>
             <br />
-            <ol type="I" id="ol">
+            <ul id="ul">
               <% userCard.grails.forEach(grail => { %>
               <li><%= grail %></li>
               <% }) %>
-            </ol type="I">
+            </ul>
           </div>
         </div>
-        <nav class="level is-mobile, icons">
-          <div class="level-left">
-            <a class="level-item" aria-label="like">
-              <span class="icon is-small">
-                <i class="fas fa-heart" aria-hidden="true"></i>
-              </span>
-            </a>
-          </div>
-        </nav>
       </div>
     </article>
   </div>
   <% }) %>
+</div>
 </div>
 
 <%- include('../partials/footer') %>

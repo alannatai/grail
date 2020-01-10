@@ -34,7 +34,7 @@
   <div id="user-grails-main-container">
       <% userCards.forEach(userCard => { %>
         
-			<div id="grail-card" style="width: 48%; margin: 5px;" class="box">
+			<div id="user-grail-card" style="width: 48%; margin: 5px;" class="box">
 				<article class="media">
 					<div class="media-left">
 					</div>
@@ -44,7 +44,7 @@
 								<strong><%= userCard.category %></strong>
 								<small>@<%= userCard.user %></small>
 								<br />
-								<ol type="I" id="ol">
+								<ul id="ul">
 									<% userCard.grails.forEach(grail => { %>
                   <li>
                     <span id="<%= grail._id %>" class="user-grail-text"><%= grail.grail %></span>
@@ -70,7 +70,7 @@
                     </span>
                   </li>
 									<% }) %>
-                </ol>
+                </ul>
                 
                 <form action="/user/grails/<%= userCard.categoryId %>/?_method=DELETE" method="POST">
                   <button class="delete-button button is-danger" type="submit">Delete</button>
@@ -78,14 +78,6 @@
 
 							</div>
 						</div>
-						<nav class="level is-mobile, icons">
-							<div class="level-left">
-								<a class="level-item" aria-label="like">
-									<span class="icon is-small">
-										<i class="fas fa-heart" aria-hidden="true"></i>
-									</span>
-								</a>
-							</div>
 						</nav>
 					</div>
 				</article>
