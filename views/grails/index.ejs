@@ -1,25 +1,44 @@
 <%- include('../partials/header') %>
 
-<form action="/grails" method="GET">
-  <div class="input-field">
-      <input class="input" type="text" name="category" placeholder="Filter by Category" list="categories" data-error="Please enter a category"/>
-      <datalist id="categories">
-        <% categories.forEach(category => { %>
-            <option value="<%= category.category %>" id="<%= category._id %>" >
-        <% }) %>
-      </datalist>
+<div id="filter-form">
+  <div class="field">
+    <div class="control">
+      <form id="search-category-bar" action="/grails" method="GET">
+        <div class="input-field">
+            <input class="input is-primary" type="text" name="category" placeholder="Filter by Category" list="categories" data-error="Please enter a category"/>
+            <datalist id="categories">
+              <% categories.forEach(category => { %>
+                  <option value="<%= category.category %>" id="<%= category._id %>" >
+              <% }) %>
+            </datalist>
+        </div>
+      </form>
+      <form id="search-user-bar" action="/grails" method="GET" style="display: none;">
+        <div class="input-field">
+            <input class="input is-primary" type="text" name="user" placeholder="Filter by User" list="users" data-error="Please enter a category"/>
+            <datalist id="users">
+              <% users.forEach(user => { %>
+                  <option value="<%= user.name %>" id="<%= user._id %>" >
+              <% }) %>
+            </datalist>
+        </div>
+      </form>
+    </div>
   </div>
-</form>
-<form action="/grails" method="GET">
-  <div class="input-field">
-      <input class="input" type="text" name="user" placeholder="Filter by User" list="users" data-error="Please enter a category"/>
-      <datalist id="users">
-        <% users.forEach(user => { %>
-            <option value="<%= user.name %>" id="<%= user._id %>" >
-        <% }) %>
-      </datalist>
+
+  <div class="field">
+  <div class="control">
+    <label class="radio">
+      <input type="radio" name="filter" value="category" checked>
+      Category
+    </label>
+    <label class="radio">
+      <input type="radio" name="filter" value="user">
+      User
+    </label>
   </div>
-</form>
+</div>
+</div>
 
 <div id="tally-container">
     <% if(grailTally) { %>
@@ -31,34 +50,35 @@
 </div>
 
 <div class="main-container-center">
-<div class="main-container">
-  <% userCards.forEach(userCard => { %>
-
-  <div id="grail-card" class="box">
-    <article class="media">
-      <div class="media-left">
-        <figure class="image is-64x64">
-          <img src="<%= userCard.avatar %>" alt="Image" />
-        </figure>
-      </div>
-      <div class="media-content">
-        <div class="content">
-          <div class="user-grail-content">
-            <strong><%= userCard.category %></strong>
-            <small>@<%= userCard.user %></small>
-            <br />
-            <ul id="ul">
-              <% userCard.grails.forEach(grail => { %>
-              <li><%= grail %></li>
-              <% }) %>
-            </ul>
+  <div class="main-container">
+    <% userCards.forEach(userCard => { %>
+    
+      <div id="grail-card" class="box">
+        <article class="media">
+          <div class="media-left">
+            <figure class="image is-64x64">
+              <img src="<%= userCard.avatar %>" alt="Image" />
+            </figure>
           </div>
-        </div>
+          <div class="media-content">
+            <div class="content">
+              <div class="user-grail-content">
+                <strong><%= userCard.category %></strong>
+                <small class="tag is-light">@<%= userCard.user %></small>
+                <br />
+                <ul id="ul">
+                  <% userCard.grails.forEach(grail => { %>
+                  <li><%= grail %></li>
+                  <% }) %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
-    </article>
+    
+    <% }) %>
   </div>
-  <% }) %>
-</div>
 </div>
 
 <%- include('../partials/footer') %>

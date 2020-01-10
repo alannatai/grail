@@ -8,7 +8,7 @@ $(document).ready(function() {
 		$('.icon-close').removeClass('open');
   });
 
-  $('.pencil').on('click', function(e) {
+  $('.edit').on('click', function(e) {
     e.preventDefault();
     console.log(e.target.id)
     $(e.target).css('display', 'none');
@@ -16,6 +16,17 @@ $(document).ready(function() {
     $(`#${e.target.id}.user-grail-delete`).css('display', 'none');
     $(`#${e.target.id}.user-grail-form`).css('display', 'block');
   });
+
+  $('input[type="radio"]').click(function(){
+    const checkedValue = $("input[name='filter']:checked").val();
+    if(checkedValue === 'category') {
+      $('#search-user-bar').css('display', 'none');
+      $('#search-category-bar').css('display', 'block');
+    } else {
+      $('#search-category-bar').css('display', 'none');
+      $('#search-user-bar').css('display', 'block');
+    }
+  })
 })
 
 function userGrailUpdate(deleteGrailId, updateCategory) {
@@ -44,46 +55,8 @@ function userGrailUpdate(deleteGrailId, updateCategory) {
   })
     .done(function (response) {
       console.log(response);
+      window.location.reload();
   })
    return false;
 
   }
-  
-  // $('#edit-button').on('click', function(e) {
-  //   e.preventDefault();
-  //   console.log(e.target)
-  // })
-
-
-
-// $('#grail-card').on('click', function() {
-//   window.location.href='/grails/show';
-// })
-
-// var settings = {
-//   "async": true,
-//   "url": "http://localhost:9000/add-grail",
-//   "method": "POST",
-//   "data": {
-//     "category": "Sweatpants",
-//     "grail": "Muji"
-//   }
-// }
-
-// $.ajax(settings).done(function (response) {
-//   console.log(response);
-// });
-
-// const axios = require('axios');
-
-// changeHandler = e => {
-//   this.setState({ [e.target.name]: e.target.value })
-// };
-
-// $('add-grail').on('submit', function(e) {
-//   e.preventDefault();
-//   axios.post('http://localhost:9000/add-grail', )
-//   .then(res => {
-//     console.log(res.data);
-//   })
-// })

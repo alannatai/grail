@@ -48,6 +48,10 @@ function show(req, res, next) {
   })
 }
 
+function capitalize(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 async function _addGrail(req, res, onSuccessCb) {
   console.log('req.body', req.body)
   const existingCategory = await Category.findOne({ category: req.body.category }).select('_id').lean();
@@ -72,7 +76,7 @@ async function _addGrail(req, res, onSuccessCb) {
        })
      }
    } else {
-     Grail.create({ grail: req.body.grail }, function(err, grail) {
+     Grail.create({ grail: capitalize(req.body.grail) }, function(err, grail) {
        grail.users.push(req.user);
        Category.findById(existingCategory, function(err, category) {
          grail.category = category;
@@ -88,9 +92,9 @@ async function _addGrail(req, res, onSuccessCb) {
      })
    }
   } else {
-    Grail.create({grail: req.body.grail}, function(err, grail) {
+    Grail.create({ grail: capitalize(req.body.grail) }, function(err, grail) {
       grail.users.push(req.user);
-      Category.create({category: req.body.category}, function(err, category) {
+      Category.create({ category: capitalize(req.body.category) }, function(err, category) {
         grail.category = category;
         grail.save(function(err) {
           req.user.grails.push(grail);

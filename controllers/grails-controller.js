@@ -3,7 +3,6 @@ const Grail = require('../models/grail');
 const Category = require('../models/category');
 
 function index(req, res, next) {
-  console.log('req.query:', req.query)
   Category.find({}, function(err, categories) {
     Grail.find({})
     .populate('category')

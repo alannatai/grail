@@ -6,6 +6,18 @@ body {
   box-sizing: border-box;
 }
 
+button {
+  display: inline-block;
+  border: none;
+  margin: 0;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  text-align: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
 #title {
   font-family: 'Sacramento', 'Comfortaa', 'Montserrat', 'Pacifico' , cursive; 
 }
@@ -13,7 +25,9 @@ body {
 nav {
   display: flex;
   width: 100%;
-  padding: 1.5rem 1.5rem;
+  padding: 1.5rem;
+  position: fixed;
+  z-index: 99;
 }
 
 nav a {
@@ -25,9 +39,15 @@ a {
   text-decoration: none;
 }
 
+#filter-form {
+  margin: 0 auto;
+  width: 70%;
+  padding-top: 3rem;
+}
+
 #add-grail-button-container {
   position: fixed;
-  bottom: 2%;
+  bottom: 5%;
   right: 49%;
   background-color: white;
   height: 64px;
@@ -37,17 +57,17 @@ a {
 
 #add-grail-button {
   position: fixed;
-  bottom: 2%;
+  bottom: 5%;
   right: 49%;
   color: #00d1b1;
 }
 
 #add-grail-button:hover {
-  color: #df6f6f;
+  color: silver;
 }
 
 #tally-container {
-  margin: 40px;
+  margin: 0 auto;
   width: 30%;
 }
 
@@ -82,7 +102,7 @@ progress::-webkit-progress-value {
 	   -webkit-linear-gradient(top, 
 	                           rgba(255, 255, 255, .25), 
 	                           rgba(0, 0, 0, .25)),
-	   -webkit-linear-gradient(left, #09c, #f44);
+	   -webkit-linear-gradient(left, #00d1b1, #a3b1ff,rgb(255, 110, 142));
 
     border-radius: 5px; 
     background-size: 35px 20px, 100% 100%, 100% 100%;
@@ -151,7 +171,7 @@ label {
 
 .formwrap {
   padding: 20px;
-  background-color: #f4fffd;
+  background-color: white;
   max-width: 620px;
   height: 100%;
   float: right;
@@ -177,13 +197,20 @@ option {
   }
 }
 
+#user-form {
+  margin: 0 auto;
+  width: 70%;
+  padding-top: 3rem;
+}
+
 #user-grails-main-container {
   display: flex;
   flex-wrap: wrap;
 }
 
-.user-grail-form input{
-  
+#user-grail-card {
+  margin: 10px;
+  width: 48%;
 }
 
 .user-grail-buttons {
@@ -193,3 +220,4 @@ option {
 .delete-button {
   float: right;
 }
+
