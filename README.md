@@ -1,6 +1,6 @@
 # Grail
 
-Now Live! https://grail-sei.herokuapp.com/grails
+Now Live! https://grail-sei.herokuapp.com/
 
 Grail was created to share great things and find great things in return. The idea behind Grail is based off of "holy grails", a popular video series on youtube, where beauty gurus would share their all time favourite products of any given beauty category. But why limit favourites to beauty? Grails allows people to share things in their life that they have no replacement for. Things that they love, give them comfort or solely for it's quality and experience. As a result of sharing a person's love, it provides a deeper look into a person's interests and allows one to find like-minded people. Connecting people one love at a time.
 
