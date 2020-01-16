@@ -12,6 +12,7 @@ Grail was created to share great things and find great things in return. The ide
 
 Main page displays all existing grails from all users in the form of 'grail cards'. Grail cards show the user, the category they posted, and their holy grails/favourites under that category.
 
+
 <img src="/images/main_page.png" alt="main_page" style="zoom:33%;" />
 
 You can filter the shown grails by typing in a Category or User in the stop search bar. 
@@ -20,6 +21,7 @@ Clicking on the bar will show a dropdown of all existing categories, or you can 
 <img src="/images/search_bar.png" alt="search_bar" style="zoom:40%;" />
 
 Filtering by Category will also display a tally of the chosen grails in the category, ranking them from most to least popular!
+
 
 <img src="/images/category_page.png" alt="category_page" style="zoom:33%;" />
 
@@ -33,6 +35,7 @@ The user's page allows the user to change their displayed username as well as av
 They can also view their grails, delete individual grails, delete entire cards, or update individual grails.
 
 <img src="/images/user_page.png" alt="user_page" style="zoom:33%;" />
+
 
 ### Next Steps
 
