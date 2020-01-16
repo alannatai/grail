@@ -115,7 +115,7 @@ function addGrail(req, res) {
 
 function addGrailApi(req, res) {
   console.log('res');
-  _addGrail(req, res, () => res.send('Success'));
+  _addGrail(req, res, () => res.json('Success'));
 }
 
 function _deleteGrail(req, res, onSuccessCb) {

@@ -68,7 +68,7 @@ a {
 
 #tally-container {
   margin: 0 auto;
-  width: 30%;
+  width: 500px;
 }
 
 .tally-grail {
@@ -121,7 +121,7 @@ progress::-webkit-progress-value {
 
 #grail-card {
   width: 23%; 
-  min-width: 300px;
+  min-width: 325px;
   margin: 10px;
 }
 
@@ -215,6 +215,7 @@ option {
 #user-grail-card {
   margin: 10px;
   width: 48%;
+  min-width: 400px;
 }
 
 .user-grail-buttons {
