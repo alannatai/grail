@@ -12,27 +12,27 @@ Grail was created to share great things and find great things in return. The ide
 
 Main page displays all existing grails from all users in the form of 'grail cards'. Grail cards show the user, the category they posted, and their holy grails/favourites under that category.
 
-<img src="/Users/alannatai/Development/grail/images/main_page.png" alt="main_page" style="zoom:33%;" />
+<img src="/images/main_page.png" alt="main_page" style="zoom:33%;" />
 
 You can filter the shown grails by typing in a Category or User in the stop search bar. 
 Clicking on the bar will show a dropdown of all existing categories, or you can start typing a category to see if it exists.
 
-<img src="/Users/alannatai/Development/grail/images/search_bar.png" alt="search_bar" style="zoom:40%;" />
+<img src="/images/search_bar.png" alt="search_bar" style="zoom:40%;" />
 
 Filtering by Category will also display a tally of the chosen grails in the category, ranking them from most to least popular!
 
-<img src="/Users/alannatai/Development/grail/images/category_page.png" alt="category_page" style="zoom:33%;" />
+<img src="/images/category_page.png" alt="category_page" style="zoom:33%;" />
 
 Signed in users will see a '+' button on the bottom of their screen which allows them to add grails.
 Clicking on the input bar allows you to see existing categories and grails, coercing the user to pick categories/grails that already exist.
 You may also create a new category/grail.
 
-<img src="/Users/alannatai/Development/grail/images/form_page.png" alt="form_page" style="zoom:33%;" />
+<img src="/images/form_page.png" alt="form_page" style="zoom:33%;" />
 
 The user's page allows the user to change their displayed username as well as avatar.
 They can also view their grails, delete individual grails, delete entire cards, or update individual grails.
 
-<img src="/Users/alannatai/Development/grail/images/user_page.png" alt="user_page" style="zoom:33%;" />
+<img src="/images/user_page.png" alt="user_page" style="zoom:33%;" />
 
 ### Next Steps
 
