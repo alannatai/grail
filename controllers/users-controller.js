@@ -114,8 +114,7 @@ function addGrail(req, res) {
 };
 
 function addGrailApi(req, res) {
-  console.log('res');
-  _addGrail(req, res, () => res.json('Success'));
+  _addGrail(req, res, () => res.json('Update Successful'));
 }
 
 function _deleteGrail(req, res, onSuccessCb) {
@@ -137,8 +136,7 @@ function deleteGrail(req, res) {
 };
 
 function deleteGrailApi(req, res) {
-  console.log('res');
-  _deleteGrail(req, res, () => res.send('Success'));
+  _deleteGrail(req, res, () => res.json('Delete Successful'));
 }
 
 function deleteGrailPost(req, res) {
